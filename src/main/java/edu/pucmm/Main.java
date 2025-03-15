@@ -14,7 +14,7 @@ import com.google.gson.Gson;
 
 public class Main {
     public static void main(String[] args) {
-        int port=8080;
+        int port = Integer.parseInt(System.getenv("PORT"));
         Javalin app = Javalin.create(config -> {
             config.staticFiles.add(staticFileConfig -> {
                 staticFileConfig.hostedPath = "/";
