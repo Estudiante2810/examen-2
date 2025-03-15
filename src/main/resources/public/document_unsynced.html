@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <title>Registros locales</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+    <!--Nav-->
+    <nav id="navbar" class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top"></nav>
+    <div class="registros-container">
+        <div class="container">
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Sector</th>
+                        <th>Nivel Escolar</th>
+                        <th>Acciones</th>
+                    </tr>
+                    </thead>
+                    <tbody id="records">
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
+    <script src="js/localforage.js"></script>
+    <script src="js/navbar.js" defer></script>
+
+    <script>
+        function cargarRegistros() {
+            const records = document.getElementById('records');
+            records.innerHTML = '';
+            localforage.iterate((value, key) => {
+                if (value.nombre !== undefined)
+                {
+                    const newRow = document.createElement('tr');
+                    newRow.innerHTML = `
+                        <td>${value.id}</td>
+                        <td>${value.nombre}</td>
+                        <td>${value.Sector}</td>
+                        <td>${value.NivelEscolar}</td>
+                        <td>
+                            <button class="btn btn-outline-dark" onclick="modificarRegistro('${value.id}')">Modificar</button>
+                            <button class="btn btn-outline-danger" onclick="eliminarRegistro('${value.id}')">Borrar</button>
+                            <button class="btn btn-outline-success" onclick="loadRecord('${value.id}')">Cargar</button>
+                        </td>
+                    `;
+                    records.appendChild(newRow);
+                }
+            })
+                .catch(error => {
+                    console.error('Error cargando registros:', error);
+                });
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            cargarRegistros();
+        });
+
+        function eliminarRegistro(id) {
+            localforage.removeItem("registro-"+id)
+                .then(() => {
+                    cargarRegistros();
+                })
+                .catch(error => {
+                    console.error(`Error eliminando registro ${id}:`, error);
+                });
+        }
+    </script>
+
+    <script>
+        function modificarRegistro(id){
+            localStorage.setItem('registro-act', id);
+            window.location.href = 'document_edit.html';
+        }
+    </script>
+
+    <script>
+        function loadRecord(id) {
+            event.preventDefault();
+            let nombre;
+            let sector;
+            let nivelEscolar;
+            let UsuarioRegistrador;
+            let latitud;
+            let longitud;
+
+            localforage.getItem('registro-' + id).then((registro) => {
+                if (registro !== null) {
+                    nombre = registro.nombre;
+                    sector = registro.Sector;
+                    nivelEscolar = registro.NivelEscolar;
+                    UsuarioRegistrador = registro.UsuarioRegistrador;
+                    latitud = registro.latitud;
+                    longitud = registro.longitud;
+
+                    let xhttp = new XMLHttpRequest();
+
+                    xhttp.open("POST", "/load_records", true);
+                    xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                    xhttp.send("nombre=" + nombre
+                        + "&sector=" + sector
+                        + "&nivelEscolar=" + nivelEscolar
+                        + "&UsuarioRegistrador=" + UsuarioRegistrador
+                        + "&latitud=" + latitud
+                        + "&longitud=" + longitud);
+
+                    xhttp.onreadystatechange = function () {
+                        if (this.readyState === 4) {
+                            if (this.status === 200) {
+                                eliminarRegistro(id);dime
+                            } else if (this.status === 404) {}
+                        }
+                    };
+                } else {
+                    console.log('Registro no encontrado.');
+                }
+            }).catch((error) => {
+                console.error('Error con registro:', error);
+            });
+        }
+    </script>
+</body>
+</html>

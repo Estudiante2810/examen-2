@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <title>Nuevo Registro</title>
+    <link rel="stylesheet" href="css/styles.css">
+</head>
+<body id="page-top" onload="getLocation()">
+    <!-- Nav -->
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+        <div class="container px-5">
+            <a class="navbar-brand" href="index.html">
+                <img src="img/pucmm_logo.png" alt="PUCMM Logo" height="40">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+            <div class="collapse navbar-collapse" id="navbarResponsive">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="document_new.html">NUEVO REGISTRO</a></li>
+                    <li class="nav-item"><a class="nav-link" href="document_show.html">REGISTROS</a></li>
+                    <li class="nav-item"><a class="nav-link" href="document_unsynced.html">REGISTROS LOCALES</a></li>
+                    <li class="nav-item"><a class="nav-link" href="user_new.html">NUEVO USUARIO</a></li>
+                    <li class="nav-item"><a id="connection-status" class="nav-link" href="document_new_offline.html">REGISTRO OFFLINE</a></li>
+                    <li class="nav-item"><a id="nav-username" class="nav-link" href="#">DESCONECTADO</a></li>
+                    <li class="nav-item"><a id="cerrarSesion" class="nav-link" href="/logout.html">CERRAR SESION</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <!-- Content-->
+         <div class="container px-5 text-center text-white">
+            <section class="py-5">
+                <div class="container px-5">
+                    <div class="row justify-content-center">
+                        <div class="col-lg-6">
+                            <div class="card registration-container">
+                                <div class="card-body">
+                                    <h2 class="card-title text-center mb-4">Nuevo Registro</h2>
+                                    <form id="formRecord">
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" id="name" name="nombre" placeholder="Nombre" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" id="sector" name="sector" placeholder="Sector" required>
+                                        </div>
+                                        <div class="mb-3">
+                                            <select class="form-select" id="nivelEscolar" name="nivelEscolar" required>
+                                                <option value="" disabled selected>Seleccione Nivel Escolar</option>
+                                                <option value="Basico">Básico</option>
+                                                <option value="Medio">Medio</option>
+                                                <option value="Grado Universitario">Grado Universitario</option>
+                                                <option value="Postgrado">Postgrado</option>
+                                                <option value="Doctorado">Doctorado</option>
+                                            </select>
+                                        </div>
+                                        <lab>Ubicación</lab>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" id="latitud" name="latitud" placeholder="Latitud" readonly>
+                                        </div>
+                                        <div class="mb-3">
+                                            <input type="text" class="form-control" id="longitud" name="longitud" placeholder="Longitud" readonly>
+                                        </div>
+                                        <button type="submit" class="btn btn-outline-success btn-block" id="registrarBtn">Guardar</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+    <!-- Footer-->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5>Campus de Santiago</h5>
+                    <ul class="list-unstyled">
+                        <li>Autopista Duarte Km 1 1/2</li>
+                        <li>Santiago, República Dominicana</li>
+                        <li>Tel.: (809) 580-1962</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Campus de Santo Domingo</h5>
+                    <ul class="list-unstyled">
+                        <li>Abraham Lincoln esq. Simón Bolívar</li>
+                        <li>Santo Domingo, República Dominicana</li>
+                        <li>Tel.: (809) 580-1962</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Extensión Puerto Plata</h5>
+                    <ul class="list-unstyled">
+                        <li>Calle Separación No.2</li>
+                        <li>Puerto Plata, República Dominicana</li>
+                        <li>Tel.: (809) 586-2060</li>
+                    </ul>
+                </div>
+                <div class="col-md-3 mb-4">
+                    <h5>Línea de Atención</h5>
+                    <p><i class="fa fa-phone"></i> <a href="tel:(809)2001962" class="text-white text-decoration-none">1(809) 200 1962</a></p>
+                    <p><i class="fa fa-whatsapp"></i> <a href="https://wa.me/18097231960" class="text-white text-decoration-none">(809) 580 1962</a></p>
+                    <p><i class="fa fa-envelope"></i> <a href="mailto:info@pucmm.edu.do" class="text-white text-decoration-none">info@pucmm.edu.do</a></p>
+                    <p><i class="fa fa-envelope"></i> <a href="/formulario-quejas" class="text-white text-decoration-none">Reclamaciones y sugerencias</a></p>
+                    <div class="d-flex gap-2 mt-3">
+                        <a href="http://www.facebook.com/pucmm/" class="text-white"><i class="fa fa-facebook fa-2x"></i></a>
+                        <a href="http://twitter.com/pucmm/" class="text-white"><i class="fa fa-twitter fa-2x"></i></a>
+                        <a href="http://www.youtube.com/pucmmtv/" class="text-white"><i class="fa fa-youtube-play fa-2x"></i></a>
+                        <a href="http://www.instagram.com/pucmm" class="text-white"><i class="fa fa-instagram fa-2x"></i></a>
+                        <a href="https://www.linkedin.com/edu/school?id=12020" class="text-white"><i class="fa fa-linkedin fa-2x"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-4">
+                <p class="m-0">&copy; 2025 PUCMM</p>
+            </div>
+        </div>
+    </footer>
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="localforage.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/localforage/1.10.0/localforage.min.js"></script>
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            let usernameNav = document.getElementById("nav-username");
+            if(usernameNav)
+                usernameNav.textContent = localStorage.getItem("username").toUpperCase();
+        });
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            let formRecord = document.getElementById('formRecord');
+            formRecord.addEventListener('submit', function(event) {
+                event.preventDefault();
+                let form_data = new FormData(formRecord);
+                let record_data = {
+                    id: new Date().getTime(),
+                    nombre: form_data.get('nombre'),
+                    Sector: form_data.get('sector'),
+                    NivelEscolar: form_data.get('nivelEscolar'),
+                    UsuarioRegistrador: localStorage.getItem("username"),
+                    latitud: form_data.get('latitud'),
+                    longitud: form_data.get('longitud'),
+                };
+                localforage.setItem('registro-' + record_data.id, record_data).then(() => {
+                    window.location.href = "index.html";
+                }).catch((error) => {
+                    console.error('Error al almacenar el registro:', error);
+                });
+            });
+        });
+    </script>
+
+    <script>
+        function getLocation() {
+            if (!!navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    function (position) {
+                        let latitud =  document.getElementById('latitud');
+                        if(latitud)
+                            latitud.value = position.coords.latitude;
+
+                        let longitud =  document.getElementById('longitud');
+                        if(longitud)
+                            longitud.value = position.coords.longitude;
+                    },
+                    function () {
+                        window.alert("No se pudo obtener ubicacion, acepte permisos de localizacion.");
+                    }
+                );
+            }
+        }
+    </script>
+
+</body>
+</html>
+
